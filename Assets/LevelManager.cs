@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
 
     public void EndGame()
     {
-        PlayerController.playerWon=true;
+       // PlayerController.playerWon=true;
         SceneManager.LoadScene("EndScene");
     }
 

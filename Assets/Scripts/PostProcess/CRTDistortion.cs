@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Platformer.Mechanics;
 
 public class CRTDistortion : MonoBehaviour
 {
     private Material material;
-
-    public float distortionStrength;
+    private PlayerController player;
     // Start is called before the first frame update
+
+    public float intensity;
     void Start()
     {
         material = new Material(Shader.Find("Hidden/CRTDistortion"));
@@ -21,11 +23,17 @@ public class CRTDistortion : MonoBehaviour
         {
             Debug.Log("unable to find tex: CRTDistortion");
         }
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+
     }
 
     void OnRenderImage(RenderTexture source, RenderTexture dest)
     { 
-        material.SetFloat("_strength", distortionStrength);
+        float dualityStrength = player.health.GetHealth();
+        dualityStrength *= 2f;
+        dualityStrength = Mathf.Clamp(dualityStrength, 0, 1f);
+        material.SetFloat("_strength", 1 - dualityStrength);
+        intensity = dualityStrength;
         Graphics.Blit(source, dest, material);
     }
 
