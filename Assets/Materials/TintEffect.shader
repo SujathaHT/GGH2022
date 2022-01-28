@@ -45,8 +45,9 @@ Shader "Hidden/TintEffect"
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 float lum = col.r*.1 + col.g*.1 + col.b*.81;
-                float3 tint = float3(lum,lum,lum);
-
+                float4 tint = float4(0.1,0.2,0.9,1);
+                // float3 tint = float3(lum,lum,lum);
+                tint = col * tint;
                 col.rgb = lerp(col.rgb, tint, _tintBlend);
                 // just invert the colors
                 // col.rgb = 1 - col.rgb;
