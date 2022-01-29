@@ -27,6 +27,7 @@ namespace Platformer.Mechanics
         /// Initial jump velocity at the start of a jump.
         /// </summary>
         public float jumpTakeOffSpeed = 7;
+        public float doublejumpTakeOffSpeed = 14;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -34,6 +35,8 @@ namespace Platformer.Mechanics
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
+
+        private bool canDoubleJump = false;
 
         bool jump;
         Vector2 move;
@@ -58,7 +61,15 @@ namespace Platformer.Mechanics
             {
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                {
                     jumpState = JumpState.PrepareToJump;
+                    canDoubleJump = true;
+                }
+                else if (canDoubleJump && Input.GetButtonDown("Jump"))
+                {
+                    jumpState = JumpState.PrepareToJump;
+                    canDoubleJump = false;
+                }
                 else if (Input.GetButtonUp("Jump"))
                 {
                     stopJump = true;
@@ -106,9 +117,14 @@ namespace Platformer.Mechanics
 
         protected override void ComputeVelocity()
         {
-            if (jump && IsGrounded)
+            if (jump)
             {
-                velocity.y = jumpTakeOffSpeed * model.jumpModifier;
+                float jumpSpeed = jumpTakeOffSpeed;
+                if(!IsGrounded)
+                {
+                    jumpSpeed = doublejumpTakeOffSpeed;
+                }
+                velocity.y = jumpSpeed * model.jumpModifier;
                 jump = false;
             }
             else if (stopJump)
