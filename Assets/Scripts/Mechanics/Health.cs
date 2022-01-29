@@ -113,7 +113,9 @@ namespace Platformer.Mechanics
                     if (totalHealth <= 0)
                     {
                         LevelManager levelManager = FindObjectOfType<LevelManager>();
-                        levelManager.EndGame();
+                        //levelManager.EndGame();
+                        totalHealth = 1.0f;
+                        // TODO: remove debug
                     }
                 }
             }
