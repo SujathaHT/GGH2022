@@ -18,6 +18,8 @@ namespace Platformer.Mechanics
         public bool randomAnimationStartTime = false;
         [Tooltip("List of frames that make up the animation.")]
         public Sprite[] idleAnimation, collectedAnimation;
+        [Tooltip("Collection particle effect.")]
+        public Transform collectionEffect;
 
         internal Sprite[] sprites = new Sprite[0];
 
@@ -57,6 +59,13 @@ namespace Platformer.Mechanics
             var ev = Schedule<PlayerTokenCollision>();
             ev.token = this;
             ev.player = player;
+
+            // Play collected particle effect
+            GameObject collectedEffectObject = Instantiate(collectionEffect, transform.position, Quaternion.identity).gameObject;
+            collectedEffectObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.5f);
+            collectedEffectObject.transform.SetParent(gameObject.transform, true);
+
+            //Destroy(collectedEffectObject, 40.0f);
         }
     }
 }
