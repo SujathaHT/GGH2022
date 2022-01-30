@@ -19,6 +19,8 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
 
+        // public Transform doubleJumpEffect;
+
         /// <summary>
         /// Max horizontal speed of the player.
         /// </summary>
@@ -69,6 +71,9 @@ namespace Platformer.Mechanics
                 {
                     jumpState = JumpState.PrepareToJump;
                     canDoubleJump = false;
+                    // GameObject doubleJumpPartEffect = Instantiate(doubleJumpEffect, transform.position, Quaternion.identity).gameObject;
+                    // doubleJumpPartEffect.transform.SetParent(transform, true);
+                    // //Destroy(doubleJumpPartEffect, 4.0f);
                 }
                 else if (Input.GetButtonUp("Jump"))
                 {

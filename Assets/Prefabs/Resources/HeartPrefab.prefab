@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7693972132171293971}
   m_Layer: 0
   m_Name: HeartPrefab
-  m_TagString: Untagged
+  m_TagString: HeartToken
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

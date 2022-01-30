@@ -44,12 +44,12 @@ namespace Platformer.Mechanics
             currentHP = Mathf.Clamp(currentHP + 1, 0, maxHP);
         }
 
-        public void Collected()
+        public void Collected(float amount)
         {
-            collectiblePoints += 1;
-
-            // Increase total health by a fraction of the collectible count
-            totalHealth += GetCollectibleFraction();
+            collectiblePoints += (int)amount;
+            collectiblePoints = (int)Mathf.Clamp(collectiblePoints, 0, 1f);
+            // totalHealth += GetCollectibleFraction();
+            totalHealth += (float)amount / 100f;
         }
 
         //TODO: delete
@@ -107,8 +107,8 @@ namespace Platformer.Mechanics
                     timer = 0f;
 
                     // Decrease health by a small amount every second
-                    totalHealth -= healthDecreaseFactorOverTime;
-                    totalHealth = Mathf.Clamp(totalHealth, 0, 1f);
+                    // totalHealth -= healthDecreaseFactorOverTime;
+                    // totalHealth = Mathf.Clamp(totalHealth, 0, 1f);
 
                     if (totalHealth <= 0)
                     {

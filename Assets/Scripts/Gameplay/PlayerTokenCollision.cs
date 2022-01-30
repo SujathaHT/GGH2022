@@ -19,7 +19,9 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             AudioSource.PlayClipAtPoint(token.tokenCollectAudio, token.transform.position);
-            player.health.Collected();
+            float amount = 1f;
+            if(token.tag == "NDToken") amount = -1f;
+            player.health.Collected(amount);
         }
     }
 }

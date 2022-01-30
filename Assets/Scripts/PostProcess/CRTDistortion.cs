@@ -30,10 +30,10 @@ public class CRTDistortion : MonoBehaviour
     void OnRenderImage(RenderTexture source, RenderTexture dest)
     { 
         float dualityStrength = player.health.GetHealth();
-        dualityStrength *= 2f;
+        dualityStrength *= 1.5f;
         dualityStrength = Mathf.Clamp(dualityStrength, 0, 1f);
         material.SetFloat("_strength", 1 - dualityStrength);
-        intensity = dualityStrength;
+        intensity = 1-dualityStrength;
         Graphics.Blit(source, dest, material);
     }
 
