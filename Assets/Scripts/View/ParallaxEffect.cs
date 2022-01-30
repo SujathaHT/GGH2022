@@ -40,7 +40,7 @@ public class ParallaxEffect : MonoBehaviour
             if (camPositionRight > boundRight)
                     {
                         string prefabName = gameObject.name.Replace("(Clone)", "");
-                        Debug.Log(prefabName + " on the right ");
+                        // Debug.Log(prefabName + " on the right ");
                         Object obj = Resources.Load(prefabName);
                         Instantiate(obj, 
                             new Vector3(startPosition + GetComponent<SpriteRenderer>().bounds.size.x, 

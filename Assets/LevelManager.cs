@@ -34,7 +34,10 @@ public class LevelManager : MonoBehaviour
 
     public void EndGame()
     {
-       // PlayerController.playerWon=true;
+        // PlayerController.playerWon=true;
+        float health = player.health.GetHealth();
+        if(health <= 0) PlayerController.playerWon = false;
+        else PlayerController.playerWon = true;
         SceneManager.LoadScene("EndScene");
     }
 

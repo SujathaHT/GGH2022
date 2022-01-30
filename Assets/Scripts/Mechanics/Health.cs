@@ -47,7 +47,7 @@ namespace Platformer.Mechanics
         public void Collected(float amount)
         {
             collectiblePoints += (int)amount;
-            collectiblePoints = (int)Mathf.Clamp(collectiblePoints, 0, 1f);
+            // collectiblePoints = (int)Mathf.Clamp(collectiblePoints, 0, 1f);
             // totalHealth += GetCollectibleFraction();
             totalHealth += (float)amount / 100f;
         }
@@ -109,13 +109,17 @@ namespace Platformer.Mechanics
                     // Decrease health by a small amount every second
                     // totalHealth -= healthDecreaseFactorOverTime;
                     // totalHealth = Mathf.Clamp(totalHealth, 0, 1f);
-
+                    // totalHealth -= healthDecreaseFactorOverTime;
+                    // totalHealth = 0.8f;
                     if (totalHealth <= 0)
                     {
                         LevelManager levelManager = FindObjectOfType<LevelManager>();
-                        //levelManager.EndGame();
-                        totalHealth = 1.0f;
-                        // TODO: remove debug
+                        levelManager.EndGame();
+                    }
+                    else if(totalHealth >= 1f)
+                    {
+                        LevelManager levelManager = FindObjectOfType<LevelManager>();
+                        levelManager.EndGame();
                     }
                 }
             }
