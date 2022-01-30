@@ -19,3 +19,6 @@ Tech:
 Unity 2020.3.26.f1 for game creation
 Audacity Software for mixing audio effects
 Paint3D for creating sprites and icons
+
+Credits:
+Sujatha N
