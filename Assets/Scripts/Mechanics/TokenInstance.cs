@@ -62,9 +62,7 @@ namespace Platformer.Mechanics
 
             // Play collected particle effect
             GameObject collectedEffectObject = Instantiate(collectionEffect, transform.position, Quaternion.identity).gameObject;
-            collectedEffectObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.5f);
             collectedEffectObject.transform.SetParent(gameObject.transform, true);
-
             //Destroy(collectedEffectObject, 40.0f);
         }
     }
