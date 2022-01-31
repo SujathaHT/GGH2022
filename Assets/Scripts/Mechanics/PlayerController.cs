@@ -19,7 +19,7 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
 
-        // public Transform doubleJumpEffect;
+        public Transform doubleJumpEffect;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -71,9 +71,14 @@ namespace Platformer.Mechanics
                 {
                     jumpState = JumpState.PrepareToJump;
                     canDoubleJump = false;
-                    // GameObject doubleJumpPartEffect = Instantiate(doubleJumpEffect, transform.position, Quaternion.identity).gameObject;
-                    // doubleJumpPartEffect.transform.SetParent(transform, true);
-                    // //Destroy(doubleJumpPartEffect, 4.0f);
+                    
+                    GameObject doubleJumpPartEffect = Instantiate(doubleJumpEffect, new Vector3(transform.position.x + 0.7f, transform.position.y, transform.position.z), Quaternion.identity).gameObject;
+                    SpriteRenderer doubleJumpRenderer = doubleJumpPartEffect.GetComponent<SpriteRenderer>();
+                    SpriteRenderer parentRenderer = GetComponent<SpriteRenderer>();
+                    doubleJumpRenderer.sortingLayerName = parentRenderer.sortingLayerName;
+                    doubleJumpRenderer.sortingOrder = parentRenderer.sortingOrder;
+                    //doubleJumpPartEffect.transform.SetParent(transform, true);
+                    Destroy(doubleJumpPartEffect, 0.250f);
                 }
                 else if (Input.GetButtonUp("Jump"))
                 {
